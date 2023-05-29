@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+  postgres: 
+    image: postgres:13.1
+    container_name: postgre
+    environment:
+      POSTGRES_DB: CustomerManagement
+      POSTGRES_USER: customerManagementUser
+      POSTGRES_PASSWORD: customerManagementPassword
+      PGDATA: /data/postgres
+    restart: always
+    volumes:
+        - /root/postgresql:/var/lib/postgresql/data
+    ports:
+        - 5432:5432
+  apigateway:
+    image: apigateway
+    container_name: apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - 81:80
+    depends_on:
+      - postgres
+  customermanagementapi:
+    image: customermanagementapi
+    container_name: customermanagementapi
+    build:
+      context: .
+      dockerfile: CustomerManagementAPI/Dockerfile
+    ports:
+      - 82:80
+    depends_on:
+      - postgres
+  webui:
+    image: webui
+    container_name: webui
+    build:
+      context: .
+      dockerfile: WebUI/Dockerfile
+    ports:
+      - 83:80
+    depends_on:
+      - apigateway
+volumes:
+  postgres-db:
+    driver: local
+   
+
+
+
+
+

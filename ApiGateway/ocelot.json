@@ -1,0 +1,51 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/Customer/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 82
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "SwaggerKey": "customer"
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Authentication/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 82
+        }
+      ],
+      "UpstreamPathTemplate": "/Authentication/{everything}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "SwaggerKey": "customer"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "customer",
+      "Config": [
+        {
+          "Name": "Customer Api",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:82/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://host.docker.internal:81/"
+  }
+}
