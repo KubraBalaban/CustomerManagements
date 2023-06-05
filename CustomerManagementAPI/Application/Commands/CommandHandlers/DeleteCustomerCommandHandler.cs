@@ -33,6 +33,14 @@ namespace CustomerManagementAPI.Application.Commands.CommandHandlers
                     }
 
                 }
+                else
+                {
+                    if (customer != null)
+                    {
+                        _customerContext.Customers.Remove(customer);
+                        _customerContext.SaveChanges();
+                    }
+                }
                 var response = _mapper.Map<DeleteCustomerResponseModel>(customer);
                 return ResponseModel<DeleteCustomerResponseModel>.Success(response, ResponseMessage.Success.CustomerDeleteSuccessful);
             }
