@@ -1,16 +1,12 @@
 using JWTAuthenticationManager;
 using Microsoft.Extensions.Configuration;
-using Moq;
 
 namespace CustomerManagementApi.UnitTest
 {
     public class AuthenticationControllerTest
     {
-        private readonly Mock<IConfiguration> _configurationMock;
-
         public AuthenticationControllerTest()
         {
-            _configurationMock = new Mock<IConfiguration>();
         }
         [Fact]
         public void CreateTokenTest()
